@@ -2,18 +2,16 @@ class PagesController < ApplicationController
   def dashboard
   end
 
-  # require 'dotenv'
-  # require 'http'
-  # require 'pp'
+  require 'http'
+  require 'pp'
 
-  # Dotenv.load
+  
+  before_action do
+    json = JSON.parse(Http.get("https://localhost:4000?token=d289f337851910f1")}&limit=20"))
+    @data = json.to_hash
+    @info = @data["results"].map {|listing| listing}
+  end
 
-  # before_action do
-  #   json = JSON.parse(Http.get("https://openapi.etsy.com/v2/listings/active?api_key=#{ENV.fetch("ETSY_API_KEY")}&limit=10&includes=MainImage"))
-  #   @data = json.to_hash
-  #   @info = @data["results"].map {|listing| listing}
-  # end
-
-  # def index
-  # end
+  def index
+  end
 end

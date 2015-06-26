@@ -11,6 +11,7 @@ class Api::SshhhsController < ApplicationController
 
   def index
     @sshhhs = Sshhh.all.includes(:user)
+    @sshhhs = Sshhh.all.includes(:user).first(20) 
   end
 
   def create
