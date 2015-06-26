@@ -2,16 +2,14 @@ class Api::SessionController < ApplicationController
 
   def create
 
-    username = params[:username]
+    email = params[:email]
     password = params[:password]
-    @user = User.find_by username: username
+    @user = User.find_by email: email
     if (@user) && (@user.authenticate password)
+      render status: 201
     else
       render json: {auth: "failed"}, status: 422
     end
-  end
-
-  def new
-    @user = User.new
-  end
+  end  
 end
+
