@@ -1,11 +1,10 @@
-json.array! @sshhhs, :id, :secrets, :user
+json.array! @sshhhs do |sshhh|
 
-json.array! @users do |user|
-  json.id user.id
-  json.name user.name
+	json.id sshhh.id
+	json.secrets sshhh.secrets
 
-  json.sshhhs user.sshhhs do |sshhh|
-    json.id sshhh.id
-    json.secrets sshhh.secrets
+  json.user do
+    json.id sshhh.user.id
+    json.username sshhh.user.username
   end
 end
