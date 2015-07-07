@@ -2,11 +2,14 @@ class Api::SshhhsController < ApplicationController
 
   def index
     # @sshhhs = Sshhh.all.includes(:user)
-    @sshhhs = Sshhh.all.includes(:user).last(20) 
+    @sshhhs = Sshhh.all.includes(:user).last(20)
   end
 
   def create
-  	@sshhh = Sshhh.new params.require(:sshhh).permit(:secrets, :user_id)
+    token = params[:token]
+    user = User.find_by token: token
+  	@sshhh = Sshhh.new params.require(:sshhh).permit(:secrets)
+    @sshhh.user = user
   	if @sshhh.save
   		render :index, status: 201
   	else
