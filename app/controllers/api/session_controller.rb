@@ -10,6 +10,5 @@ class Api::SessionController < ApplicationController
     else
       render json: {auth: "failed"}, status: 422
     end
-  end  
+  end
 end
-
